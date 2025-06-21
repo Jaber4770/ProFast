@@ -5,6 +5,7 @@ import ClientLogoMarquee from './ClientLogoMarquee/ClientLogoMarquee';
 import FeaturesSection from './FeaturesSection/FeaturesSection';
 import BeMarchant from './BeMarchant/BeMarchant';
 import HowItWorksSection from '../HowItWorks/HowItWorksSection';
+import Faq from './FAQ/Faq';
 
 const Home = () => {
     // console.log("this is home")
@@ -16,6 +17,7 @@ const Home = () => {
             <ClientLogoMarquee></ClientLogoMarquee>
             <FeaturesSection></FeaturesSection>
             <BeMarchant></BeMarchant>
+            <Faq></Faq>
         </div>
     );
 };
