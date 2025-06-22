@@ -1,9 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import ProFastLogo from '../ProFastLogo/ProFastLogo';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+    const { user, logOutUser } = useAuth();
 
+    const handleLogout = () => {
+        logOutUser();
+    }
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
@@ -30,7 +35,11 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {user ?
+                    <Link onClick={handleLogout} className="btn">Logout</Link>
+                    :
+                    <Link to="/login" className="btn">Login</Link>
+                }
             </div>
         </div>
     );
