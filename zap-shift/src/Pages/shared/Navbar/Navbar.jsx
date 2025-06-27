@@ -13,6 +13,7 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
         <li><NavLink to='/coverage'>Coverage</NavLink></li>
+        <li><NavLink to='/sendPercel'>Send A Percel</NavLink></li>
     </>
 
     return (
@@ -28,7 +29,10 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><ProFastLogo></ProFastLogo></a>
+
+                <span>
+                    <ProFastLogo></ProFastLogo>
+                </span>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
