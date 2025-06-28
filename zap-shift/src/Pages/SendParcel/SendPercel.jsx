@@ -3,28 +3,15 @@ import { useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const locations = [
-    {
-        region: "Dhaka",
-        district: "Dhaka",
-        city: "Dhaka",
-        covered_area: ["Uttara", "Dhanmondi", "Mirpur", "Mohammadpur"],
-    },
-    {
-        region: "Dhaka",
-        district: "Faridpur",
-        city: "Faridpur",
-        covered_area: ["Goalanda", "Boalmari", "Bhanga"],
-    },
-    // ...rest of your data
-];
 
 const SendPercel = () => {
     const [senderRegion, setSenderRegion] = useState('');
     const [receiverRegion, setReceiverRegion] = useState('');
-    const warehouseLocation = useLoaderData();
+    const locations = useLoaderData();
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     const generateTrackingId = () => {
         const timestamp = Date.now().toString(36);
@@ -113,14 +100,23 @@ const SendPercel = () => {
                     totalCost: `${costBreakdown.total}`, // ✅ fixed line
                 };                
 
-                console.log('Saving parcel:', parcelData);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Parcel saved successfully!',
-                    timer: 1500,
-                    showConfirmButton: false,
-                });
+                // console.log('Saving parcel:', parcelData);
+
+                axiosSecure.post('/parcels', parcelData)
+                    .then(res => {
+                        // console.log(res.data)
+                        // todo: redirect to payment page
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Redirecting!',
+                                text: 'Proceeding to payment gateway.',
+                                timer: 1500,
+                                showConfirmButton: false,
+                            });
+                        }
+                    })
+
                 reset();
             }
         });

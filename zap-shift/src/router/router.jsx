@@ -10,6 +10,9 @@ import Coverage from "../Pages/Coverage/Coverage";
 import About from "../Pages/About/About";
 import SendPercel from "../Pages/SendParcel/SendPercel";
 import PrivateRoute from "../routes/PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyPercels from '../Pages/Dashboard/MyPercels/MyPercels'
+
 
 export const router = createBrowserRouter([
     {
@@ -29,7 +32,7 @@ export const router = createBrowserRouter([
                 path: '/about',
                 Component: About
             }, {
-                path: '/sendPercel',
+                path: '/sendParcel',
                 element: <PrivateRoute><SendPercel></SendPercel></PrivateRoute>,
                 loader: () => fetch('../../public/warehouses.json')
             }
@@ -46,6 +49,18 @@ export const router = createBrowserRouter([
             {
                 path: 'register',
                 Component:Register
+            }
+        ]
+    }, 
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: 'myParcels',
+                element: <PrivateRoute>
+                    <MyPercels></MyPercels>
+                </PrivateRoute>
             }
         ]
     }
