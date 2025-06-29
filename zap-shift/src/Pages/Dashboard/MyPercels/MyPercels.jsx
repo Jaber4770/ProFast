@@ -4,11 +4,15 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { format } from "date-fns";
 import Swal from 'sweetalert2'; // ✅ Import Swal
+import { Link, useNavigate } from 'react-router';
 
 const MyPercels = () => {
 
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
+
+
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['my-percels', user?.email],
         queryFn: async () => {
@@ -63,10 +67,12 @@ const MyPercels = () => {
 
     const handleViewDetails = () => {
         console.log('view detils');
+
     }
 
-    const handlePay = () => {
-        console.log('pay');
+    const handlePay = (id) => {
+        // console.log('pay');
+        navigate(`/dashboard/payment/${id}`);
     }
 
     return (
@@ -96,20 +102,23 @@ const MyPercels = () => {
                                     {parcel.type === "document" ? "Document" : "Parcel"}
                                 </td>
                                 <td>{formattedDate}</td>
-                                <td>{parcel.totalCost} Tk</td>
+                                <td>$ {parcel.totalCost}</td>
                                 <td>
                                     <span
-                                        className={`badge ${parcel.paymentStatus === "Paid" ? "badge-success" : "badge-error"
-                                            } text-white`}
+                                        className={`badge ${parcel.paymentStatus === "paid" ? "bg-green-600" : "bg-red-400"} text-white`}
                                     >
                                         {parcel.paymentStatus}
                                     </span>
                                 </td>
                                 <td className="space-x-1">
                                     <button onClick={handleViewDetails} className="btn btn-sm btn-info text-white">View</button>
-                                    {parcel.paymentStatus !== "Paid" && (
-                                        <button onClick={handlePay} className="btn btn-sm btn-success text-white">Pay</button>
+
+                                    {parcel.paymentStatus === "UnPaid" && (
+
+                                            <button onClick={() => handlePay(parcel._id)} className="btn btn-sm btn-success text-white">Pay</button>
+
                                     )}
+
                                     <button onClick={() => handleDelete(parcel._id)} className="btn btn-sm btn-error text-white">Delete</button>
                                 </td>
                             </tr>

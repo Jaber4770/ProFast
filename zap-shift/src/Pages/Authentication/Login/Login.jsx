@@ -1,11 +1,15 @@
 import React from 'react';
 import { useForm } from "react-hook-form"
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../../hooks/useAuth';
 
 
 const Login = () => {
-
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from || '/';
+    const { signInUser } = useAuth();
     const {
         register,
         handleSubmit,
@@ -14,6 +18,12 @@ const Login = () => {
 
     const onSubmit = data => {
         console.log(data);
+        signInUser(data.email, data.password)
+            .then(res => {
+                // console.log(res);
+                navigate(from);
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -43,11 +53,10 @@ const Login = () => {
                         </fieldset>
                         <button className="btn btn-neutral mt-4">Login</button>
                         <p>New to ProFast? <Link className='btn btn-link' to="/register">Register</Link></p>
-                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </form>
-
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

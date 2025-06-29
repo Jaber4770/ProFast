@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-import { Home, HomeIcon, LayoutDashboard, Package } from "lucide-react";
+import { HomeIcon, LayoutDashboard, LocateFixed, Package, ReceiptText, User } from "lucide-react";
 import ProFastLogo from '../Pages/shared/ProFastLogo/ProFastLogo';
 
 const DashboardLayout = () => {
@@ -37,13 +37,40 @@ const DashboardLayout = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <ProFastLogo></ProFastLogo>
-                        <li><Link to='/'><HomeIcon className="h-5 w-5 text-gray-700" /> Home</Link></li>
-                        <li><Link to='/dashboard'><LayoutDashboard className="w-5 h-5" /> Dashboard</Link></li>
-                        <li><NavLink to='/dashboard/myParcels'><Package className="w-5 h-5" />
-                        My Parcels</NavLink></li>
+                        <ProFastLogo />
+                        <li>
+                            <Link to='/'>
+                                <HomeIcon className="text-3xl"/> Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/dashboard'>
+                                <LayoutDashboard className="text-3xl"/> Dashboard
+                            </Link>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/myParcels'>
+                                <Package className="text-3xl"/> My Parcels
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/trackParcel'>
+                                <LocateFixed className="text-3xl"/> Track a Parcel
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/paymentHistory'>
+                                <ReceiptText className="text-3xl"/> Payment History
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/updateProfile'>
+                                <User className="text-3xl"/> Update Profile
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
+
             </div>
 
         </div>

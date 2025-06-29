@@ -12,12 +12,16 @@ import SendPercel from "../Pages/SendParcel/SendPercel";
 import PrivateRoute from "../routes/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyPercels from '../Pages/Dashboard/MyPercels/MyPercels'
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import TrackParcel from "../Pages/Dashboard/TrackParcel/TrackParcel";
+import UpdateProfile from "../Pages/Dashboard/UpdateProfile/UpdateProfile";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <RootLayouts/>,
+        element: <RootLayouts />,
         children: [
             {
                 index: true,
@@ -26,7 +30,7 @@ export const router = createBrowserRouter([
             {
                 path: '/coverage',
                 Component: Coverage,
-                loader:()=>fetch('../../public/warehouses.json')
+                loader: () => fetch('../../public/warehouses.json')
             },
             {
                 path: '/about',
@@ -44,23 +48,39 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'login',
-                Component:Login
+                Component: Login
             },
             {
                 path: 'register',
-                Component:Register
+                Component: Register
             }
         ]
-    }, 
+    },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        element: <PrivateRoute>
+                    <DashboardLayout></DashboardLayout>
+                </PrivateRoute>,
         children: [
             {
                 path: 'myParcels',
-                element: <PrivateRoute>
-                    <MyPercels></MyPercels>
-                </PrivateRoute>
+                element: <MyPercels></MyPercels>
+            },
+            {
+                path: 'payment/:parcelId',
+                element: <Payment></Payment>
+            },
+            {
+                path: 'paymentHistory',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: 'trackParcel',
+                element: <TrackParcel></TrackParcel>
+            },
+            {
+                path: 'updateProfile',
+                element: <UpdateProfile></UpdateProfile>
             }
         ]
     }

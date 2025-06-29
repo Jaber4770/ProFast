@@ -43,10 +43,10 @@ const Register = () => {
                             <button className="btn btn-neutral mt-4">Register</button>
                         </fieldset>
                         <p>Already have an account? <Link className='btn btn-link' to="/login">Login</Link></p>
-                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

@@ -1,22 +1,24 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
-import { Link, Navigate, useNavigate } from 'react-router';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router';
 
 const SocialLogin = () => {
     const navigate = useNavigate();
     const { signInWithGooglePopup } = useAuth();
+    const location = useLocation();
+    const from = location.state?.from || '/';
 
     const handleGoogleSignIn = () => {
         signInWithGooglePopup()
             .then(res => {
-                console.log(res);
-                navigate('/');
+                // console.log(res);
+                navigate(from);
             })
             .catch(err => console.log(err))
     }
 
     return (
-        <div>
+        <div className='max-w-sm'>
             <div className="divider">OR</div>
             {/* Google */}
             <button onClick={handleGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5] w-full">
