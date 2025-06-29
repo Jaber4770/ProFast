@@ -16,6 +16,10 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import TrackParcel from "../Pages/Dashboard/TrackParcel/TrackParcel";
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile/UpdateProfile";
+import BeARider from "../Pages/Dashboard/BeARider/BeARider";
+import ApprovedRiders from "../Pages/Dashboard/ApprovedRiders/ApprovedRiders";
+import PendingRiders from "../Pages/Dashboard/PendingRiders/PendingRiders";
+import BlockedRiders from "../Pages/Dashboard/BlockedRiders/BlockedRiders";
 
 
 export const router = createBrowserRouter([
@@ -35,9 +39,15 @@ export const router = createBrowserRouter([
             {
                 path: '/about',
                 Component: About
-            }, {
+            },
+            {
                 path: '/sendParcel',
                 element: <PrivateRoute><SendPercel></SendPercel></PrivateRoute>,
+                loader: () => fetch('../../public/warehouses.json')
+            },
+            {
+                path: 'beARider',
+                element: <PrivateRoute><BeARider></BeARider></PrivateRoute>,
                 loader: () => fetch('../../public/warehouses.json')
             }
         ]
@@ -81,6 +91,18 @@ export const router = createBrowserRouter([
             {
                 path: 'updateProfile',
                 element: <UpdateProfile></UpdateProfile>
+            },
+            {
+                path: 'approvedRiders',
+                element: <ApprovedRiders></ApprovedRiders>
+            },
+            {
+                path: 'pendingRiders',
+                element: <PendingRiders></PendingRiders>
+            },
+            {
+                path: 'blockedRiders',
+                element: <BlockedRiders></BlockedRiders>
             }
         ]
     }

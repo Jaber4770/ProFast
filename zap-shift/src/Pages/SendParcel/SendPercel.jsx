@@ -184,7 +184,7 @@ const SendPercel = () => {
 
                             <div className="form-control mb-3 flex flex-col">
                                 <label className="label">Sender Contact</label>
-                                <input type="text" placeholder="Contact number" className="input input-bordered"
+                                <input type="number" placeholder="Contact number" className="input input-bordered"
                                     {...register('senderContact', { required: true })} />
                             </div>
 
@@ -246,7 +246,7 @@ const SendPercel = () => {
 
                             <div className="form-control mb-3 flex flex-col">
                                 <label className="label">Receiver Contact</label>
-                                <input type="text" placeholder="Contact number" className="input input-bordered"
+                                <input type="number" placeholder="Contact number" className="input input-bordered"
                                     {...register('receiverContact', { required: true })} />
                             </div>
 

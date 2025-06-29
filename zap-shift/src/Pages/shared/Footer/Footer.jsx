@@ -3,7 +3,7 @@ import ProFastLogo from '../ProFastLogo/ProFastLogo';
 
 const Footer = () => {
     return (
-        <footer className="footer footer-horizontal footer-center bg-neutral text-primary-content p-10">
+        <footer className="footer footer-horizontal footer-center bg-neutral text-primary-content p-10 rounded-t-2xl">
             <aside>
                 <div className='flex items-center'>
                     <ProFastLogo></ProFastLogo>

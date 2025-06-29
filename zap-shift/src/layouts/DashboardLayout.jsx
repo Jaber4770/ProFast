@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-import { HomeIcon, LayoutDashboard, LocateFixed, Package, ReceiptText, User } from "lucide-react";
+import { HomeIcon, LayoutDashboard, LocateFixed, Package, ReceiptText, User, CheckCircle, Clock, Ban } from "lucide-react";
 import ProFastLogo from '../Pages/shared/ProFastLogo/ProFastLogo';
 
 const DashboardLayout = () => {
@@ -40,35 +40,53 @@ const DashboardLayout = () => {
                         <ProFastLogo />
                         <li>
                             <Link to='/'>
-                                <HomeIcon className="text-3xl"/> Home
+                                <HomeIcon className="text-3xl text-blue-600" /> Home
                             </Link>
                         </li>
                         <li>
                             <Link to='/dashboard'>
-                                <LayoutDashboard className="text-3xl"/> Dashboard
+                                <LayoutDashboard className="text-3xl text-indigo-600" /> Dashboard
                             </Link>
                         </li>
                         <li>
                             <NavLink to='/dashboard/myParcels'>
-                                <Package className="text-3xl"/> My Parcels
+                                <Package className="text-3xl text-purple-600" /> My Parcels
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashboard/trackParcel'>
-                                <LocateFixed className="text-3xl"/> Track a Parcel
+                                <LocateFixed className="text-3xl text-teal-600" /> Track a Parcel
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashboard/paymentHistory'>
-                                <ReceiptText className="text-3xl"/> Payment History
+                                <ReceiptText className="text-3xl text-orange-600" /> Payment History
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashboard/updateProfile'>
-                                <User className="text-3xl"/> Update Profile
+                                <User className="text-3xl text-pink-600" /> Update Profile
+                            </NavLink>
+                        </li>
+
+                        {/* New Rider status links */}
+                        <li>
+                            <NavLink to='/dashboard/approvedRiders'>
+                                <CheckCircle className="text-3xl text-green-600" /> Approved Riders
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/pendingRiders'>
+                                <Clock className="text-3xl text-yellow-500" /> Pending Riders
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/blockedRiders'>
+                                <Ban className="text-3xl text-red-600" /> Blocked Riders
                             </NavLink>
                         </li>
                     </ul>
+
                 </div>
 
             </div>

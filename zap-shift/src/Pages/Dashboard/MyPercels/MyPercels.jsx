@@ -77,7 +77,7 @@ const MyPercels = () => {
 
     return (
         <div className="overflow-x-auto">
-            <table className="table table-zebra w-full">
+            <table className="table table-zebra w-full border-l-2 border-gray-400">
                 <thead className="bg-base-200">
                     <tr>
                         <th>Index</th>
