@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import Loader from '../../shared/Loader/Loader';
 
 const CheckoutForm = () => {
     const stripe = useStripe();
@@ -24,7 +25,7 @@ const CheckoutForm = () => {
     });
 
     if (isPending) {
-        return <span className="loading loading-spinner loading-xl"></span>
+        return <Loader></Loader>
     }
 
     // console.log(parcelInfo);

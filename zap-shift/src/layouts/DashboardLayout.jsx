@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-import { HomeIcon, LayoutDashboard, LocateFixed, Package, ReceiptText, User, CheckCircle, Clock, Ban } from "lucide-react";
+import { HomeIcon, LayoutDashboard, LocateFixed, Package, ReceiptText, User, CheckCircle, Clock, Ban, ShieldCheck } from "lucide-react";
 import ProFastLogo from '../Pages/shared/ProFastLogo/ProFastLogo';
 
 const DashboardLayout = () => {
@@ -47,6 +47,12 @@ const DashboardLayout = () => {
                             <Link to='/dashboard'>
                                 <LayoutDashboard className="text-3xl text-indigo-600" /> Dashboard
                             </Link>
+                        </li>
+                        <li>
+                            <NavLink to='/dashboard/makeAdmin'>
+                                <ShieldCheck className="text-3xl text-blue-600" />
+                                Make Admin
+                            </NavLink>
                         </li>
                         <li>
                             <NavLink to='/dashboard/myParcels'>

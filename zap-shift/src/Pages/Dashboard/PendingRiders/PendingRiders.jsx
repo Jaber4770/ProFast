@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
+import Loader from '../../shared/Loader/Loader';
 
 const PendingRiders = () => {
 
@@ -19,7 +20,7 @@ const PendingRiders = () => {
     })
 
     if (isPending) {
-        return <span className="loading loading-spinner loading-xl"></span>
+        return <Loader></Loader>
 
     }
 
@@ -33,11 +34,11 @@ const PendingRiders = () => {
         setSelectedRider(null);
     };
 
-    const handleApprove = async () => {
+    const handleApprove = async (email) => {
         if (!selectedRider) return;
         setActionLoading(true);
         try {
-            await axiosSecure.patch(`/riders/${selectedRider._id}`, { status: 'approved' });
+            await axiosSecure.patch(`/riders/${selectedRider._id}`, { status: 'approved', email });
 
             Swal.fire({
                 title: "Rider Approved!",
@@ -180,7 +181,7 @@ const PendingRiders = () => {
                                 Cancel Application
                             </button>
                             <button
-                                onClick={handleApprove}
+                                onClick={() => handleApprove(selectedRider.email)}
                                 disabled={actionLoading}
                                 className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
                             >

@@ -30,8 +30,8 @@ const Register = () => {
     const onSubmit = (data) => {
         // console.log(data);
         createUser(data.email, data.password)
-            .then(async (res) => {
-                console.log(res);
+            .then(async () => {
+                // console.log(res);
                 // update user info in the db
                 const userInfo = {
                     email: data.email,

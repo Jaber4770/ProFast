@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import Loader from '../../shared/Loader/Loader';
 
 const ApprovedRiders = () => {
     const axiosSecure = useAxiosSecure();
@@ -51,7 +52,7 @@ const ApprovedRiders = () => {
     };
 
     if (isPending) {
-        return <span className="loading loading-spinner loading-xl"></span>;
+        return <Loader></Loader>;
     }
 
     return (

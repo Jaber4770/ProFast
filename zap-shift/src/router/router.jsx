@@ -20,6 +20,7 @@ import BeARider from "../Pages/Dashboard/BeARider/BeARider";
 import ApprovedRiders from "../Pages/Dashboard/ApprovedRiders/ApprovedRiders";
 import PendingRiders from "../Pages/Dashboard/PendingRiders/PendingRiders";
 import BlockedRiders from "../Pages/Dashboard/BlockedRiders/BlockedRiders";
+import MakeAdmin from "../Pages/Dashboard/MakeAdmin/MakeAdmin";
 
 
 export const router = createBrowserRouter([
@@ -69,8 +70,8 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoute>
-                    <DashboardLayout></DashboardLayout>
-                </PrivateRoute>,
+            <DashboardLayout></DashboardLayout>
+        </PrivateRoute>,
         children: [
             {
                 path: 'myParcels',
@@ -103,7 +104,12 @@ export const router = createBrowserRouter([
             {
                 path: 'blockedRiders',
                 element: <BlockedRiders></BlockedRiders>
+            },
+            {
+                path: 'makeAdmin',
+                element: <MakeAdmin></MakeAdmin>,
             }
+
         ]
     }
 ]);

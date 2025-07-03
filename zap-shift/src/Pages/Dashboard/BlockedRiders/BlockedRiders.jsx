@@ -2,6 +2,8 @@ import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { Loader2 } from 'lucide-react';
+import Loader from '../../shared/Loader/Loader';
 
 const BlockedRiders = () => {
     const axiosSecure = useAxiosSecure();
@@ -15,10 +17,6 @@ const BlockedRiders = () => {
             return res.data;
         }
     });
-
-    if (isPending) {
-        return <span className="loading loading-spinner loading-xl"></span>;
-    }
 
     // Mutation to unblock rider
     const unblockMutation = useMutation({
@@ -41,6 +39,10 @@ const BlockedRiders = () => {
     const handleUnblock = (rider) => {
         unblockMutation.mutate(rider);
     };
+
+    if (isPending) {
+        return <Loader></Loader>;
+    }
 
 
     return (
