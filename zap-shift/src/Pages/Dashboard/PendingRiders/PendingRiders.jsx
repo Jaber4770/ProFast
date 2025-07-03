@@ -50,6 +50,7 @@ const PendingRiders = () => {
             refetch();
 
         } catch (error) {
+            console.log(error);
             Swal.fire({
                 title: "Error!",
                 text: `Failed to approve rider.`,
@@ -94,6 +95,7 @@ const PendingRiders = () => {
 
         } catch (error) {
             // alert('Failed to cancel rider application.', error);
+            console.log(error);
             Swal.fire({
                 title: "Error!",
                 text: `Failed to approve rider.`,

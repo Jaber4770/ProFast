@@ -2,8 +2,13 @@ import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { HomeIcon, LayoutDashboard, LocateFixed, Package, ReceiptText, User, CheckCircle, Clock, Ban, ShieldCheck } from "lucide-react";
 import ProFastLogo from '../Pages/shared/ProFastLogo/ProFastLogo';
+import useUserRole from '../hooks/useUserRole';
 
 const DashboardLayout = () => {
+
+    const { role, loading: authLoading } = useUserRole();
+    
+
     return (
         <div className='flex gap-4'>
             <div className="drawer lg:drawer-open">
@@ -49,12 +54,6 @@ const DashboardLayout = () => {
                             </Link>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/makeAdmin'>
-                                <ShieldCheck className="text-3xl text-blue-600" />
-                                Make Admin
-                            </NavLink>
-                        </li>
-                        <li>
                             <NavLink to='/dashboard/myParcels'>
                                 <Package className="text-3xl text-purple-600" /> My Parcels
                             </NavLink>
@@ -76,21 +75,32 @@ const DashboardLayout = () => {
                         </li>
 
                         {/* New Rider status links */}
-                        <li>
-                            <NavLink to='/dashboard/approvedRiders'>
-                                <CheckCircle className="text-3xl text-green-600" /> Approved Riders
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/dashboard/pendingRiders'>
-                                <Clock className="text-3xl text-yellow-500" /> Pending Riders
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/dashboard/blockedRiders'>
-                                <Ban className="text-3xl text-red-600" /> Blocked Riders
-                            </NavLink>
-                        </li>
+                        {
+                            !authLoading && role === 'admin' && <>
+
+                                <li>
+                                    <NavLink to='/dashboard/makeAdmin'>
+                                        <ShieldCheck className="text-3xl text-blue-600" />
+                                        Make Admin
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/approvedRiders'>
+                                        <CheckCircle className="text-3xl text-green-600" /> Approved Riders
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/pendingRiders'>
+                                        <Clock className="text-3xl text-yellow-500" /> Pending Riders
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/blockedRiders'>
+                                        <Ban className="text-3xl text-red-600" /> Blocked Riders
+                                    </NavLink>
+                                </li>
+                            </>
+                        }
                     </ul>
 
                 </div>

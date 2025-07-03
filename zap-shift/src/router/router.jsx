@@ -21,6 +21,8 @@ import ApprovedRiders from "../Pages/Dashboard/ApprovedRiders/ApprovedRiders";
 import PendingRiders from "../Pages/Dashboard/PendingRiders/PendingRiders";
 import BlockedRiders from "../Pages/Dashboard/BlockedRiders/BlockedRiders";
 import MakeAdmin from "../Pages/Dashboard/MakeAdmin/MakeAdmin";
+import Forbidden from "../Pages/Forbidden/Forbidden";
+import AdminRoute from "../routes/AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
                 path: 'beARider',
                 element: <PrivateRoute><BeARider></BeARider></PrivateRoute>,
                 loader: () => fetch('../../public/warehouses.json')
+            },
+            {
+                path: 'forbidden',
+                Component: Forbidden
             }
         ]
     },
@@ -95,19 +101,20 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'approvedRiders',
-                element: <ApprovedRiders></ApprovedRiders>
+                element: <AdminRoute><ApprovedRiders></ApprovedRiders></AdminRoute>
             },
             {
                 path: 'pendingRiders',
-                element: <PendingRiders></PendingRiders>
+                element: <AdminRoute><PendingRiders></PendingRiders></AdminRoute>
             },
             {
                 path: 'blockedRiders',
-                element: <BlockedRiders></BlockedRiders>
+                element: <AdminRoute><BlockedRiders></BlockedRiders></AdminRoute>
+                
             },
             {
                 path: 'makeAdmin',
-                element: <MakeAdmin></MakeAdmin>,
+                element: <AdminRoute><MakeAdmin></MakeAdmin></AdminRoute>,
             }
 
         ]
